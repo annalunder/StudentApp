@@ -1,0 +1,79 @@
+﻿@model SchoolDB.Models.CourseVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <head>
+        @*<link rel="stylesheet" href="~/lib/bootstrap-multiselect/css/bootstrap-multiselect.css" type="text/css" />*@
+        @*<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />*@
+
+        <link href="~/lib/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+    </head>
+
+<h1>Edit</h1>
+
+<h4>Course</h4>
+<hr />
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label class="control-label">Course name</label>
+                    <input asp-for="Course.Name" class="form-control" />
+                    <span asp-validation-for="Course.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" asp-for="SelectAssignments"></label>
+            
+                    @Html.ListBoxFor(model => model.SelectAssignmentArray, new MultiSelectList(Model.SelectAssignments, "Id", "Name"), new { id = "bootstrap-multiple-selected", multiple = "true", @class = "form-control" })
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="SelectStudents"></label>
+                    @Html.ListBoxFor(model => model.SelectStudentsArray, new MultiSelectList(Model.SelectStudents, "Id", "Name"), new { id = "bootstrap-multiple-selected2", multiple = "true", @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    @*<script type="text/javascript" src="~/lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>*@
+    @*<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>*@
+
+    <script type="text/javascript" src="~/lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-multiple-selected').multiselect();
+        });
+
+        $(document).ready(function () {
+            $('#bootstrap-multiple-selected2').multiselect();
+        });
+    </script>
+
+}
+<style>
+    /*#bootstrap-multiple-selected{
+        width: 200px;
+    }*/
+    label.checkbox {
+        width: 250px;
+    }
+</style>
