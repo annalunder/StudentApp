@@ -49,7 +49,6 @@ namespace SchoolDB.Data
             modelBuilder.Entity<Teacher>().HasData(new Teacher { Id = 1008, Name = "Adam", CourseId = 1005 });
             modelBuilder.Entity<Assignment>().HasData(new Assignment { Id = 1009, Name = "JavaScript", Description = "Rörliga bilder"});
             
-
         }
     }
 }
