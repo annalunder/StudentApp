@@ -35,22 +35,20 @@ namespace SchoolDB.Data
             modelBuilder.Entity<Assignment>()
                 .HasOne(a => a.Course)
                 .WithMany(c => c.Assignments);
-            //.OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Course>()
                 .HasOne(c => c.Teacher)
                 .WithOne(t => t.Course)
                 .HasForeignKey<Teacher>(c => c.CourseId);
 
-            modelBuilder.Entity<Student>().HasData(new Student { Id = 1000, Name = "Rune-Örjan" });
-            modelBuilder.Entity<Student>().HasData(new Student { Id = 1001, Name = "Bengt Alsterbengt" });
+            modelBuilder.Entity<Student>().HasData(new Student { Id = 1000, Name = "Simon Lunder" });
+            modelBuilder.Entity<Student>().HasData(new Student { Id = 1001, Name = "Linda Nordström" });
             modelBuilder.Entity<Course>().HasData(new Course { Id = 1004, Name = "JavaScript" });
             modelBuilder.Entity<Course>().HasData(new Course { Id = 1005, Name = "HTML" });
             modelBuilder.Entity<Teacher>().HasData(new Teacher { Id = 1007, Name = "Ingrid", CourseId = 1004 });
-            modelBuilder.Entity<Teacher>().HasData(new Teacher { Id = 1008, Name = "Ebba", CourseId = 1005 });
-            modelBuilder.Entity<Assignment>().HasData(new Assignment { Id = 1009, Name = "JS ECMAScript", Description = "Förstå skillnaden"});
+            modelBuilder.Entity<Teacher>().HasData(new Teacher { Id = 1008, Name = "Adam", CourseId = 1005 });
+            modelBuilder.Entity<Assignment>().HasData(new Assignment { Id = 1009, Name = "JavaScript", Description = "Rörliga bilder"});
             
-
 
         }
     }
