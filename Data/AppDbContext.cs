@@ -18,10 +18,7 @@ namespace SchoolDB.Data
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("ConnectionString");
-        //}
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StudentCourse>()
@@ -45,9 +42,6 @@ namespace SchoolDB.Data
                 .WithOne(t => t.Course)
                 .HasForeignKey<Teacher>(c => c.CourseId);
 
-            //modelBuilder.Entity<Teacher>()
-            //    .HasOne(t => t.Course)
-            //    .WithOne(c => c.Teacher);
             modelBuilder.Entity<Student>().HasData(new Student { Id = 1000, Name = "Rune-Örjan" });
             modelBuilder.Entity<Student>().HasData(new Student { Id = 1001, Name = "Bengt Alsterbengt" });
             modelBuilder.Entity<Course>().HasData(new Course { Id = 1004, Name = "JavaScript" });
